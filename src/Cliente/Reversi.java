@@ -33,6 +33,12 @@ import Jogo.ReversiWindow;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import javax.swing.JPasswordField;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
+import javax.swing.border.BevelBorder;
 
 public class Reversi {
 
@@ -50,6 +56,7 @@ public class Reversi {
 	private Color amarelo = new Color(255, 196, 13);
 
 	private JComboBox<Cor> cores;
+	private JTextField txtNome;
 	
 	void singlePlayer(ActionEvent event)
 	{
@@ -180,7 +187,7 @@ public class Reversi {
 		frmReversi.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Reverse.png"));
 		frmReversi.setTitle("Reversi");
 		frmReversi.getContentPane().setBackground(Color.DARK_GRAY);
-		frmReversi.setBounds(100, 100, 914, 571);
+		frmReversi.setBounds(100, 100, 1160, 571);
 		frmReversi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmReversi.getContentPane().setLayout(null);
 		
@@ -192,7 +199,7 @@ public class Reversi {
 		botaoEnviar.setHorizontalAlignment(SwingConstants.LEFT);
 		botaoEnviar.setIcon(new ImageIcon("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Seta.png"));
 		botaoEnviar.setBackground(SystemColor.inactiveCaption);
-		botaoEnviar.setBounds(702, 422, 170, 76);
+		botaoEnviar.setBounds(697, 422, 175, 76);
 		frmReversi.getContentPane().add(botaoEnviar);
 		
 		TextArea chat = new TextArea();
@@ -200,34 +207,71 @@ public class Reversi {
 		frmReversi.getContentPane().add(chat);
 		
 		JButton btnComputador = new JButton("COMPUTADOR");
-		btnComputador.setHorizontalAlignment(SwingConstants.LEFT);
 		btnComputador.setIcon(new ImageIcon("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Games.png"));
 		btnComputador.setBackground(SystemColor.inactiveCaption);
 		btnComputador.setForeground(Color.BLACK);
-		btnComputador.setBounds(702, 24, 170, 76);
+		btnComputador.setBounds(902, 24, 217, 76);
 		frmReversi.getContentPane().add(btnComputador);
 		btnComputador.addActionListener(this::singlePlayer);
 		
 		JButton btnMultiplayer = new JButton("MULTIPLAYER");
-		btnMultiplayer.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMultiplayer.setIcon(new ImageIcon("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Multiplayer.png"));
 		btnMultiplayer.setBackground(SystemColor.inactiveCaption);
 		btnMultiplayer.setForeground(Color.BLACK);
-		btnMultiplayer.setBounds(702, 233, 170, 76);
+		btnMultiplayer.setBounds(902, 202, 217, 76);
 		frmReversi.getContentPane().add(btnMultiplayer);
 		btnMultiplayer.addActionListener(this::multiplayer);
 		
 		JButton btnAssistir = new JButton("ASSISTIR");
-		btnAssistir.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAssistir.setIcon(new ImageIcon("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Assistir.png"));
 		btnAssistir.setBackground(SystemColor.inactiveCaption);
-		btnAssistir.setBounds(702, 129, 170, 76);
+		btnAssistir.setBounds(902, 113, 217, 76);
 		frmReversi.getContentPane().add(btnAssistir);
+		
+		JPanel panelOnline = new JPanel();
+		panelOnline.setBounds(697, 24, 175, 334);
+		frmReversi.getContentPane().add(panelOnline);
+		
+		JList listOnlines = new JList();
+		panelOnline.add(listOnlines);
+		
+		JButton btnLimpar = new JButton("LIMPAR");
+		btnLimpar.setBackground(SystemColor.inactiveCaption);
+		btnLimpar.setBounds(697, 371, 175, 40);
+		frmReversi.getContentPane().add(btnLimpar);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.windowBorder);
+		panel.setBounds(902, 380, 217, 118);
+		frmReversi.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		txtNome = new JTextField();
+		txtNome.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNome.setBackground(SystemColor.control);
+		txtNome.setBounds(12, 38, 193, 22);
+		panel.add(txtNome);
+		txtNome.setColumns(10);
+		
+		JLabel lblNome = new JLabel("NOME");
+		lblNome.setForeground(SystemColor.textHighlight);
+		lblNome.setBounds(12, -2, 204, 50);
+		panel.add(lblNome);
+		
+		JButton btnConnectar = new JButton("CONECTAR");
+		btnConnectar.setBackground(SystemColor.inactiveCaption);
+		btnConnectar.setBounds(12, 80, 97, 25);
+		panel.add(btnConnectar);
+		
+		JButton btnSair = new JButton("SAIR");
+		btnSair.setBackground(SystemColor.inactiveCaption);
+		btnSair.setBounds(121, 80, 84, 25);
+		panel.add(btnSair);
 		btnAssistir.addActionListener(this::assistir);
 		
-		/*cores = new JComboBox<Reversi.Cor>(Cor.values());
+		cores = new JComboBox<Reversi.Cor>(Cor.values());
 		cores.setBackground(SystemColor.inactiveCaption);
-		cores.setBounds(702, 336, 170, 51);
-		frmReversi.getContentPane().add(cores);*/
+		cores.setBounds(902, 291, 217, 76);
+		frmReversi.getContentPane().add(cores);
 	}
 }
