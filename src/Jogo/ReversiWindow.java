@@ -30,7 +30,7 @@ public class ReversiWindow extends JFrame
 			}
 		}
 
-		setSize(500, 500);
+		setSize(600, 600);
 
 		setResizable(false);
 		

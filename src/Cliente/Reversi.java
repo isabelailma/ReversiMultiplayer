@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.UIManager;
 
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -30,15 +31,16 @@ import Jogo.Jogador;
 import Jogo.JogoReversi;
 import Jogo.ReversiWindow;
 
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JList;
 import javax.swing.JPasswordField;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.BevelBorder;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class Reversi {
 
@@ -46,7 +48,7 @@ public class Reversi {
 
 	private JFrame frmReversi;
 	
-	/*Métodos Professor*/
+	/*Mï¿½todos Professor*/
 	private final Border bordaPlayer1 = BorderFactory.createLineBorder(new Color(45, 137, 239), 4,
 			false);
 	private final Border bordaPlayer2 = BorderFactory.createLineBorder(Color.red, 4, false);
@@ -163,6 +165,7 @@ public class Reversi {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(new NimbusLookAndFeel());
 					Reversi window = new Reversi();
 					window.frmReversi.setVisible(true);
 				} catch (Exception e) {
@@ -184,7 +187,7 @@ public class Reversi {
 	 */
 	private void initialize() {
 		frmReversi = new JFrame();
-		frmReversi.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Reverse.png"));
+		frmReversi.setIconImage(Toolkit.getDefaultToolkit().getImage("Icones/Reverse.png"));
 		frmReversi.setTitle("Reversi");
 		frmReversi.getContentPane().setBackground(Color.DARK_GRAY);
 		frmReversi.setBounds(100, 100, 1160, 571);
@@ -197,7 +200,7 @@ public class Reversi {
 		
 		JButton botaoEnviar = new JButton("ENVIAR");
 		botaoEnviar.setHorizontalAlignment(SwingConstants.LEFT);
-		botaoEnviar.setIcon(new ImageIcon("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Seta.png"));
+		botaoEnviar.setIcon(new ImageIcon("Icones/Seta.png"));
 		botaoEnviar.setBackground(SystemColor.inactiveCaption);
 		botaoEnviar.setBounds(697, 422, 175, 76);
 		frmReversi.getContentPane().add(botaoEnviar);
@@ -207,7 +210,7 @@ public class Reversi {
 		frmReversi.getContentPane().add(chat);
 		
 		JButton btnComputador = new JButton("COMPUTADOR");
-		btnComputador.setIcon(new ImageIcon("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Games.png"));
+		btnComputador.setIcon(new ImageIcon("Icones/Games.png"));
 		btnComputador.setBackground(SystemColor.inactiveCaption);
 		btnComputador.setForeground(Color.BLACK);
 		btnComputador.setBounds(902, 24, 217, 76);
@@ -215,7 +218,7 @@ public class Reversi {
 		btnComputador.addActionListener(this::singlePlayer);
 		
 		JButton btnMultiplayer = new JButton("MULTIPLAYER");
-		btnMultiplayer.setIcon(new ImageIcon("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Multiplayer.png"));
+		btnMultiplayer.setIcon(new ImageIcon("Icones/Multiplayer.png"));
 		btnMultiplayer.setBackground(SystemColor.inactiveCaption);
 		btnMultiplayer.setForeground(Color.BLACK);
 		btnMultiplayer.setBounds(902, 202, 217, 76);
@@ -223,7 +226,7 @@ public class Reversi {
 		btnMultiplayer.addActionListener(this::multiplayer);
 		
 		JButton btnAssistir = new JButton("ASSISTIR");
-		btnAssistir.setIcon(new ImageIcon("C:\\Users\\Isabela\\workspace\\ReversiProfessor\\Icones\\Assistir.png"));
+		btnAssistir.setIcon(new ImageIcon("Icones/Assistir.png"));
 		btnAssistir.setBackground(SystemColor.inactiveCaption);
 		btnAssistir.setBounds(902, 113, 217, 76);
 		frmReversi.getContentPane().add(btnAssistir);
