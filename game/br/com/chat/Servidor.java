@@ -28,8 +28,7 @@ public class Servidor implements Runnable, ISubject {
 		}
 	}
 
-	private void aceitarJogada(String jog) {
-
+	private void check(String jog) {
 		String coordX = null;
 		Pattern p = Pattern.compile("_X_(.*?)_Y_");
 		Matcher m = p.matcher(jog);
@@ -50,12 +49,9 @@ public class Servidor implements Runnable, ISubject {
 		if (m.find()) {
 			plyName = m.group(1);
 		}
-
-		// Vamos fazer a m�gica agora.
-
 		int y = Integer.parseInt(coordX);
 		int x = Integer.parseInt(coordY);
-		if (plyName.equals("Vermelho")) {
+		if (plyName.equals("Amarelo")) {
 			Celula[][] tab = Conexao.game.getTabuleiro();
 			tab[x][y].setarDono(Conexao.amarelo, false);
 
@@ -70,7 +66,7 @@ public class Servidor implements Runnable, ISubject {
 		}
 	}
 
-	public void escutar() throws Exception {
+	public void recebe() throws Exception {
 		while (true) {
 			Socket socketEscuta = socketServidor.accept();
 			InputStreamReader streamReader = new InputStreamReader(
@@ -82,13 +78,11 @@ public class Servidor implements Runnable, ISubject {
 
 		   if (textoEnviado.contains("_JOG_")) {
 				String tempString = textoEnviado.replace("_JOG_", "");
-				aceitarJogada(tempString);
+				check(tempString);
 			}
 		   else{
 			   notifyObserver(textoEnviado);
 		   }
-
-			// ChatWindow.getInstance().addMessage(textoEnviado);
 			reader.close();
 		}
 	}
@@ -100,7 +94,7 @@ public class Servidor implements Runnable, ISubject {
 	@Override
 	public void run() {
 		try {
-			escutar();
+			recebe();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
