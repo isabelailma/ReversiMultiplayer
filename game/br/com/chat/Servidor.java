@@ -113,7 +113,8 @@ public class Servidor implements Runnable, ISubject {
 			Transferencia transferencia = (Transferencia) inStream.readObject();
 			if(transferencia.getMsg()!= null){
 				String textoEnviado = transferencia.getMsg();
-				System.out.println(transferencia.getPlayer().getCor() +": " + textoEnviado);
+				System.out.println(textoEnviado);
+				//System.out.println(transferencia.getPlayer().getCor() +": " + textoEnviado);
 				notifyObserver(textoEnviado);
 			}
 			else {
