@@ -217,15 +217,15 @@ public class JanelaPrincipal implements IObserver{
 					/**
 					 * Teste
 					 */
-					/*
+					
 					Transferencia t = new Transferencia();
 					t.setMsg(mensagem.getText());
 					
 					Conexao.cliente.enviarObjeto(t);
-					*/
 					
 					
-					Conexao.cliente.enviar(mensagem.getText());
+					
+					//Conexao.cliente.enviar(mensagem.getText());
 					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

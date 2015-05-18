@@ -41,8 +41,7 @@ public class Celula extends JButton implements Cloneable {
 				Conexao.cliente.enviarObjeto(t);
 				*/
 				
-				
-			
+				/*
 
 				String sendout = "_JOG_" + "_X_" + getColuna() + "_Y_"
 						+ getLinha() + "_JOGCOR_" + dono.getNome() + "!";
@@ -52,7 +51,7 @@ public class Celula extends JButton implements Cloneable {
 				
 				Conexao.preto.setValido(false);
 				Conexao.amarelo.setValido(false);
-				
+				*/
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
