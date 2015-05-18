@@ -135,8 +135,8 @@ public class Servidor implements Runnable, ISubject {
 			/**
 			 * Teste
 			 */
-			//recebe();
-			recebeObjeto();
+			recebe();
+			//recebeObjeto();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

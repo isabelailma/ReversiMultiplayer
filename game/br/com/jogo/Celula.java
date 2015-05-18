@@ -34,13 +34,14 @@ public class Celula extends JButton implements Cloneable {
 
 		if (valido && Conexao.rede) {
 			try {
+				/*
 				Transferencia t = new Transferencia();
 				t.setPlayer(dono);
 				
 				Conexao.cliente.enviarObjeto(t);
+				*/
 				
 				
-				/*
 				Conexao.preto.setValido(false);
 				Conexao.amarelo.setValido(false);
 
@@ -48,7 +49,7 @@ public class Celula extends JButton implements Cloneable {
 						+ getLinha() + "_JOGCOR_" + dono.getNome() + "!";
 				System.out.println(sendout);
 				Conexao.cliente.enviar(sendout);
-				*/
+				
 				
 
 			} catch (Exception e) {
