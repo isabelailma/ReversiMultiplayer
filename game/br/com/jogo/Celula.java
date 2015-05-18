@@ -18,8 +18,6 @@ public class Celula extends JButton implements Cloneable {
 	private int linha;
 
 	private int coluna;
-	
-	private Conexao conexao;
 
 	public Jogador obterDono() {
 		return dono;
@@ -34,14 +32,15 @@ public class Celula extends JButton implements Cloneable {
 
 		if (valido && Conexao.rede) {
 			try {
-				
+				Conexao.preto.setValido(false);
+				Conexao.amarelo.setValido(false);
+
 				String sendout = "_JOG_" + "_X_" + getColuna() + "_Y_"
 						+ getLinha() + "_JOGCOR_" + dono.getNome() + "!";
 				System.out.println(sendout);
 				Conexao.cliente.enviar(sendout);
+
 				
-				Conexao.preto.setValido(false);
-				Conexao.amarelo.setValido(false);
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
