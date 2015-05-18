@@ -67,6 +67,24 @@ public class Servidor implements Runnable, ISubject {
 			Conexao.game.setAtual(Conexao.amarelo);
 		}
 	}
+	public void checkObjeto(Transferencia transferencia){
+		/*
+		if (transferencia.getPlayer().getCor().equals("Amarelo")) {
+			
+			Celula[][] tab = Conexao.game.getTabuleiro();
+			tab[x][y].setarDono(Conexao.amarelo, false);
+
+			Conexao.preto.setValido(true);
+			Conexao.game.setAtual(Conexao.preto);
+		} else {
+			Celula[][] tab = Conexao.game.getTabuleiro();
+			tab[x][y].setarDono(Conexao.preto, false);
+
+			Conexao.amarelo.setValido(true);
+			Conexao.game.setAtual(Conexao.amarelo);
+		}
+		*/
+	}
 
 	public void recebe() throws Exception {
 		while (true) {
@@ -95,13 +113,12 @@ public class Servidor implements Runnable, ISubject {
 			Transferencia transferencia = (Transferencia) inStream.readObject();
 			if(transferencia.getMsg()!= null){
 				String textoEnviado = transferencia.getMsg();
-				System.out.println(textoEnviado);
+				System.out.println(transferencia.getPlayer().getCor() +": " + textoEnviado);
 				notifyObserver(textoEnviado);
 			}
 			else {
 				System.out.println("transferencia msg ta nulo");
 			}
-		
 
 			inStream.close();
 		}
