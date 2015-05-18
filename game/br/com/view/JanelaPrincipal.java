@@ -48,6 +48,7 @@ import br.com.chat.Servidor;
 import br.com.jogo.Jogador;
 import br.com.jogo.JogoReversi;
 import br.com.socket.Conexao;
+import br.com.socket.Transferencia;
 
 public class JanelaPrincipal implements IObserver{
 
@@ -208,12 +209,22 @@ public class JanelaPrincipal implements IObserver{
 			public void actionPerformed(ActionEvent e) {
 				str.append("\n"+ mensagem.getText());
 				if(getRecebida()!=null){
-					str.append("\n"+ getRecebida());
+					str.append(getRecebida()+ "\n");
 					setRecebida(null);
 				}
 				chat.setText(str.toString());
 				try {
+					/**
+					 * Teste
+					 */
+					Transferencia t = new Transferencia();
+					t.setMsg(mensagem.getText());
+					
+					Conexao.cliente.enviarObjeto(t);
+					
+					/*
 					Conexao.cliente.enviar(mensagem.getText());
+					*/
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -1,12 +1,13 @@
 package br.com.jogo;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.border.Border;
 
-public class Jogador {
+public class Jogador implements Serializable {
 	private String nome;
 
 	private Color cor;
@@ -24,6 +25,10 @@ public class Jogador {
 		this.cor = color;
 		this.humano = human;
 		this.borda = borda;
+	}
+
+	public Jogador() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

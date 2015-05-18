@@ -3,6 +3,7 @@ package br.com.chat;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.regex.Matcher;
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import br.com.jogo.Celula;
 import br.com.socket.Conexao;
+import br.com.socket.Transferencia;
 import br.com.view.IObserver;
 
 public class Servidor implements Runnable, ISubject {
@@ -74,16 +76,28 @@ public class Servidor implements Runnable, ISubject {
 			BufferedReader reader = new BufferedReader(streamReader);
 			String textoEnviado = reader.readLine();
 			System.out.println(textoEnviado);
-			
 
-		   if (textoEnviado.contains("_JOG_")) {
+			if (textoEnviado.contains("_JOG_")) {
 				String tempString = textoEnviado.replace("_JOG_", "");
 				check(tempString);
+			} else {
+				notifyObserver(textoEnviado);
 			}
-		   else{
-			   notifyObserver(textoEnviado);
-		   }
 			reader.close();
+		}
+	}
+
+	public void recebeObjeto() throws Exception {
+		while (true) {
+			Socket socketEscuta = socketServidor.accept();
+			ObjectInputStream inStream = new ObjectInputStream(
+					socketEscuta.getInputStream());
+			Transferencia transferencia = (Transferencia) inStream.readObject();
+			String textoEnviado = transferencia.getMsg();
+			System.out.println(textoEnviado);
+			notifyObserver(textoEnviado);
+
+			inStream.close();
 		}
 	}
 
@@ -94,7 +108,11 @@ public class Servidor implements Runnable, ISubject {
 	@Override
 	public void run() {
 		try {
+			/**
+			 * Teste
+			 */
 			recebe();
+			recebeObjeto();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
