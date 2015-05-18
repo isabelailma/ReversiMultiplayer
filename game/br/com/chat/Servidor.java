@@ -93,9 +93,15 @@ public class Servidor implements Runnable, ISubject {
 			ObjectInputStream inStream = new ObjectInputStream(
 					socketEscuta.getInputStream());
 			Transferencia transferencia = (Transferencia) inStream.readObject();
-			String textoEnviado = transferencia.getMsg();
-			System.out.println(textoEnviado);
-			notifyObserver(textoEnviado);
+			if(transferencia.getMsg()!= null){
+				String textoEnviado = transferencia.getMsg();
+				System.out.println(textoEnviado);
+				notifyObserver(textoEnviado);
+			}
+			else {
+				System.out.println("transferencia msg ta nulo");
+			}
+		
 
 			inStream.close();
 		}
@@ -111,7 +117,7 @@ public class Servidor implements Runnable, ISubject {
 			/**
 			 * Teste
 			 */
-			recebe();
+			//recebe();
 			recebeObjeto();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
